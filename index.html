@@ -1,722 +1,1072 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Network - Protect Earth</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --primary: #2e7d32;
-            --secondary: #4caf50;
-            --accent: #8bc34a;
-            --light: #e8f5e9;
-            --dark: #1b5e20;
-            --text: #333333;
-            --white: #ffffff;
-        }
-
-        body {
-            background-color: var(--light);
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        .logo i {
-            font-size: 2rem;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 2rem;
-        }
-
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 0;
-            position: relative;
-        }
-
-        nav ul li a:hover {
-            color: var(--accent);
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: var(--white);
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: var(--text);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-img:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem 1rem;
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .stat-item i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            color: var(--text);
-        }
-
-        .initiatives {
-            background-color: var(--white);
-        }
-
-        .initiatives-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .initiative-card {
-            background-color: var(--light);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .initiative-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .initiative-img {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .initiative-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .initiative-card:hover .initiative-img img {
-            transform: scale(1.1);
-        }
-
-        .initiative-content {
-            padding: 1.5rem;
-        }
-
-        .initiative-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .initiative-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .cta {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            text-align: center;
-            padding: 5rem 0;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta .btn {
-            background-color: var(--white);
-            color: var(--primary);
-        }
-
-        .cta .btn:hover {
-            background-color: var(--accent);
-            color: var(--white);
-        }
-
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-
-        .footer-column p {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links li a {
-            color: var(--light);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links li a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        @media (max-width: 992px) {
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
-                flex-direction: column;
-                padding: 1rem 0;
-                text-align: center;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-            }
-            
-            nav ul.active {
-                display: flex;
-            }
-            
-            nav ul li {
-                margin: 0;
-                padding: 0.8rem 0;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Animation for stats counter */
-        .counter {
-            transition: all 0.5s ease;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qianlan Skincare Manufacturer | Private Label Skincare Solutions</title>
+<meta name="description" content="Qianlan provides comprehensive private label skincare solutions for cosmetic brands. FDA compliant, ISO 22716 certified, cruelty-free skincare production in Guangzhou, China.">
+<meta name="keywords" content="private label skincare, skincare manufacturer, OEM skincare, cosmetic manufacturing, FDA skincare, ISO 22716, Guangzhou, cruelty-free">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' style='stop-color:%232d9467'/><stop offset='100%25' style='stop-color:%231e7852'/></linearGradient></defs><circle cx='50' cy='50' r='45' fill='url(%23g)'/><text x='50' y='62' font-family='Georgia,serif' font-size='36' font-weight='bold' fill='white' text-anchor='middle'>Q</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,::before,::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;color:#1f2937;line-height:1.6;overflow-x:hidden}
+img{max-width:100%;height:auto}
+a{text-decoration:none;color:inherit}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;padding:14px 32px;border-radius:999px;transition:all .3s;cursor:pointer;border:none;font-size:15px}
+.btn-primary{background:#2d9467;color:#fff;box-shadow:0 4px 15px rgba(45,148,103,.3)}
+.btn-primary:hover{background:#1e7852;transform:translateY(-2px);box-shadow:0 8px 25px rgba(45,148,103,.4)}
+.btn-outline{border:2px solid #2d9467;color:#2d9467;background:transparent}
+.btn-outline:hover{background:#2d9467;color:#fff}
+.btn-white{border:2px solid rgba(255,255,255,.3);color:#fff;background:transparent}
+.btn-white:hover{background:#fff;color:#1e7852}
+
+/* Navbar */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;transition:all .3s;padding:0}
+.navbar.scrolled{background:rgba(255,255,255,.95);backdrop-filter:blur(10px);box-shadow:0 2px 20px rgba(0,0,0,.08)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px;max-width:1200px;margin:0 auto;padding:0 24px}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo-icon{width:40px;height:40px;background:linear-gradient(135deg,#2d9467,#52b083);border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:20px;box-shadow:0 4px 10px rgba(45,148,103,.3)}
+.nav-logo-text{font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:18px;color:#fff;transition:color .3s}
+.navbar.scrolled .nav-logo-text{color:#1f2937}
+.nav-logo-sub{display:block;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#84cca8;font-family:'Inter',sans-serif;font-weight:500;transition:color .3s}
+.navbar.scrolled .nav-logo-sub{color:#2d9467}
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none}
+.nav-links a{display:block;padding:8px 16px;border-radius:999px;font-size:14px;font-weight:500;color:rgba(255,255,255,.85);transition:all .3s}
+.navbar.scrolled .nav-links a{color:#4b5563}
+.nav-links a:hover,.nav-links a.active{background:rgba(255,255,255,.1);color:#fff}
+.navbar.scrolled .nav-links a:hover,.navbar.scrolled .nav-links a.active{background:#f0f9f4;color:#2d9467}
+.nav-cta{background:#fff!important;color:#1e7852!important;padding:10px 24px!important;font-weight:600!important;box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.nav-cta:hover{background:#f0f9f4!important;color:#2d9467!important}
+.navbar.scrolled .nav-cta{background:#2d9467!important;color:#fff!important;box-shadow:0 4px 15px rgba(45,148,103,.3)}
+.navbar.scrolled .nav-cta:hover{background:#1e7852!important;color:#fff!important}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px;color:#fff;font-size:28px;line-height:1}
+.navbar.scrolled .nav-toggle{color:#374151}
+
+/* Page Section */
+.page{display:none}
+.page.active{display:block}
+
+/* Hero */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;background:linear-gradient(135deg,#111827,#1a2332,#123f2e);overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(45,148,103,.12),transparent 60%)}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 20%,rgba(30,120,82,.08),transparent 40%)}
+.hero-content{position:relative;z-index:1;max-width:700px;padding:120px 0 80px}
+.hero-badge{display:inline-block;padding:8px 20px;border-radius:999px;background:rgba(45,148,103,.12);color:#84cca8;font-size:13px;font-weight:500;border:1px solid rgba(45,148,103,.2);margin-bottom:24px}
+.hero h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(36px,5vw,68px);font-weight:700;color:#fff;line-height:1.15;margin-bottom:24px}
+.hero h1 span{background:linear-gradient(135deg,#52b083,#6ee7b7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:clamp(16px,2vw,19px);color:#9ca3af;line-height:1.7;margin-bottom:32px;max-width:600px}
+.hero-btns{display:flex;flex-wrap:wrap;gap:12px}
+.hero-certs{display:flex;flex-wrap:wrap;gap:20px;margin-top:36px}
+.hero-certs span{display:flex;align-items:center;gap:6px;color:#9ca3af;font-size:13px}
+.hero-certs .dot{width:7px;height:7px;border-radius:50%;background:#2d9467}
+
+/* Stats */
+.stats-section{margin-top:-60px;position:relative;z-index:10}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:#fff;border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,.1);overflow:hidden}
+.stat-item{text-align:center;padding:32px 20px;border-right:1px solid #f3f4f6}
+.stat-item:last-child{border-right:none}
+.stat-icon{font-size:28px;margin-bottom:8px}
+.stat-value{font-family:'Playfair Display',Georgia,serif;font-size:28px;font-weight:700;color:#111827}
+.stat-label{color:#6b7280;font-size:13px;margin-top:4px}
+
+/* Sections */
+.section{padding:100px 0}
+.section-sm{padding:80px 0}
+.section-label{color:#2d9467;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
+.section-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(28px,4vw,48px);font-weight:700;color:#111827;line-height:1.2;margin-bottom:16px}
+.section-subtitle{color:#6b7280;font-size:18px;max-width:600px;line-height:1.6}
+.text-center{text-align:center}
+.text-center .section-subtitle{margin:0 auto 0}
+.mb-2{margin-bottom:8px}.mb-3{margin-bottom:12px}.mb-4{margin-bottom:16px}.mb-6{margin-bottom:24px}.mb-8{margin-bottom:32px}.mb-10{margin-bottom:40px}.mb-12{margin-bottom:48px}.mb-16{margin-bottom:64px}
+.mt-2{margin-top:8px}.mt-3{margin-top:12px}.mt-4{margin-top:16px}.mt-6{margin-top:24px}.mt-8{margin-top:32px}.mt-10{margin-top:40px}
+.mx-auto{margin-left:auto;margin-right:auto}
+
+/* Grid */
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:40px;align-items:center}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+
+/* Cards */
+.card{background:#fff;border-radius:20px;padding:32px;box-shadow:0 4px 20px rgba(0,0,0,.04);transition:all .3s;border:1px solid #f3f4f6}
+.card:hover{box-shadow:0 12px 40px rgba(0,0,0,.08);border-color:#d1fae5}
+.card-icon{width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,#f0f9f4,#d9f0e3);display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:16px}
+.card-title{font-family:'Playfair Display',Georgia,serif;font-size:20px;font-weight:700;color:#111827;margin-bottom:8px}
+.card-desc{color:#6b7280;font-size:14px;line-height:1.7}
+.card-center{text-align:center}
+.card-center .card-icon{margin-left:auto;margin-right:auto}
+
+/* Category Cards */
+.cat-card{text-align:center;padding:40px 24px;cursor:default}
+.cat-emoji{font-size:52px;margin-bottom:16px;display:block;transition:transform .3s}
+.cat-card:hover .cat-emoji{transform:scale(1.1)}
+
+/* Check list */
+.check-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:24px}
+.check-list li{display:flex;align-items:center;gap:10px;color:#374151;font-size:14px}
+.check-list .check{color:#2d9467;font-weight:700;flex-shrink:0}
+
+/* Tabs */
+.tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:48px}
+.tab-btn{padding:10px 24px;border-radius:999px;border:1px solid #e5e7eb;background:#fff;color:#6b7280;font-size:14px;font-weight:500;cursor:pointer;transition:all .3s}
+.tab-btn.active,.tab-btn:hover{background:#2d9467;color:#fff;border-color:#2d9467;box-shadow:0 4px 15px rgba(45,148,103,.25)}
+.tab-content{display:none}
+.tab-content.active{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+
+/* Feature boxes */
+.feature-box{background:#f0f9f4;border-radius:16px;padding:24px;margin-bottom:16px}
+.feature-box h4{font-weight:600;color:#1e7852;margin-bottom:8px;font-size:15px}
+.feature-box .grid-2{gap:8px}
+.feature-box .grid-2 div{display:flex;align-items:center;gap:6px;font-size:13px;color:#374151}
+
+/* Timeline */
+.timeline{position:relative;max-width:800px;margin:0 auto}
+.timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:#e5e7eb;transform:translateX(-50%)}
+.timeline-item{display:flex;align-items:flex-start;margin-bottom:48px;position:relative}
+.timeline-item:nth-child(odd){flex-direction:row}
+.timeline-item:nth-child(even){flex-direction:row-reverse}
+.timeline-content{flex:1;padding:0 40px}
+.timeline-item:nth-child(odd) .timeline-content{text-align:right}
+.timeline-year{font-family:'Playfair Display',Georgia,serif;font-size:32px;font-weight:700;color:#2d9467}
+.timeline-title{font-weight:700;font-size:17px;color:#111827;margin:4px 0}
+.timeline-desc{color:#6b7280;font-size:14px}
+.timeline-dot{width:14px;height:14px;background:#2d9467;border-radius:50%;border:4px solid #d1fae5;position:relative;z-index:1;margin-top:8px;flex-shrink:0;left:50%;transform:translateX(-50%)}
+.timeline-spacer{flex:1;display:none}
+
+/* FAQ */
+.faq-category{margin-bottom:40px}
+.faq-cat-title{font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:700;color:#111827;margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.faq-cat-num{width:32px;height:32px;border-radius:10px;background:#f0f9f4;display:inline-flex;align-items:center;justify-content:center;color:#2d9467;font-size:13px;font-weight:700;font-family:'Inter',sans-serif}
+.faq-item{border:1px solid #f3f4f6;border-radius:16px;margin-bottom:12px;overflow:hidden;background:#fff;transition:border-color .3s}
+.faq-item:hover{border-color:#d1fae5}
+.faq-q{width:100%;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;background:none;border:none;cursor:pointer;font-size:15px;font-weight:500;color:#111827;text-align:left;font-family:'Inter',sans-serif}
+.faq-q:hover{color:#2d9467}
+.faq-arrow{font-size:18px;color:#9ca3af;transition:transform .3s;flex-shrink:0;margin-left:16px}
+.faq-item.open .faq-arrow{transform:rotate(180deg);color:#2d9467}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s,padding .3s}
+.faq-item.open .faq-a{max-height:300px;padding:0 24px 20px}
+.faq-a p{color:#6b7280;font-size:14px;line-height:1.7}
+
+/* Blog */
+.blog-featured{border-radius:24px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.04);margin-bottom:40px;display:grid;grid-template-columns:1fr 1fr}
+.blog-feat-img{background:linear-gradient(135deg,#2d9467,#52b083);display:flex;align-items:center;justify-content:center;font-size:80px;min-height:280px}
+.blog-feat-body{padding:40px;display:flex;flex-direction:column;justify-content:center}
+.blog-feat-badge{display:inline-block;padding:6px 14px;border-radius:999px;background:#f0f9f4;color:#2d9467;font-size:12px;font-weight:600;width:fit-content;margin-bottom:12px}
+.blog-feat-title{font-family:'Playfair Display',Georgia,serif;font-size:26px;font-weight:700;color:#111827;margin-bottom:8px}
+.blog-feat-desc{color:#6b7280;font-size:15px;margin-bottom:16px}
+.blog-feat-meta{display:flex;gap:16px;font-size:12px;color:#9ca3af;margin-bottom:16px}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.blog-card{border-radius:20px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,.04);border:1px solid #f3f4f6;transition:all .3s}
+.blog-card:hover{box-shadow:0 12px 35px rgba(0,0,0,.08);border-color:#d1fae5}
+.blog-card-img{height:160px;background:linear-gradient(135deg,#f0f9f4,#d9f0e3);display:flex;align-items:center;justify-content:center;font-size:44px;transition:background .3s}
+.blog-card:hover .blog-card-img{background:linear-gradient(135deg,#d1fae5,#a7f3d0)}
+.blog-card-body{padding:20px}
+.blog-card-tag{display:inline-block;padding:4px 10px;border-radius:999px;background:#f3f4f6;color:#6b7280;font-size:11px;font-weight:500;margin-bottom:10px}
+.blog-card-title{font-family:'Playfair Display',Georgia,serif;font-size:16px;font-weight:700;color:#111827;margin-bottom:8px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.blog-card-desc{color:#6b7280;font-size:13px;line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:12px}
+.blog-card-meta{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#9ca3af}
+.blog-card-link{color:#2d9467;font-weight:600;font-size:12px}
+
+/* Contact Form */
+.contact-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:48px}
+.contact-info-card{display:flex;gap:16px;margin-bottom:24px}
+.contact-info-icon{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#f0f9f4,#d9f0e3);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.contact-info-text h4{font-weight:600;color:#111827;margin-bottom:4px;font-size:15px}
+.contact-info-text p{color:#6b7280;font-size:13px;margin-bottom:2px}
+.contact-info-text small{color:#9ca3af;font-size:11px}
+.form-box{background:#fff;border-radius:24px;padding:40px;box-shadow:0 4px 20px rgba(0,0,0,.04);border:1px solid #f3f4f6}
+.form-title{font-family:'Playfair Display',Georgia,serif;font-size:24px;font-weight:700;color:#111827;margin-bottom:8px}
+.form-desc{color:#6b7280;font-size:14px;margin-bottom:24px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group label{font-size:13px;font-weight:500;color:#374151}
+.form-group label .req{color:#ef4444}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:12px 16px;border:1px solid #d1d5db;border-radius:12px;font-size:14px;font-family:'Inter',sans-serif;transition:all .3s;outline:none;background:#fff}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:#2d9467;box-shadow:0 0 0 3px rgba(45,148,103,.1)}
+.form-group textarea{resize:vertical;min-height:120px}
+.form-success{display:none;text-align:center;padding:40px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:20px}
+.form-success.show{display:block}
+.form-success-icon{font-size:48px;color:#22c55e;margin-bottom:16px}
+
+/* CTA */
+.cta-box{background:linear-gradient(135deg,#1e7852,#2d9467);border-radius:28px;padding:60px 40px;text-align:center;position:relative;overflow:hidden}
+.cta-box::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 50%,rgba(255,255,255,.1),transparent 50%)}
+.cta-box>*{position:relative}
+.cta-box h2{font-family:'Playfair Display',Georgia,serif;font-size:clamp(26px,4vw,40px);font-weight:700;color:#fff;margin-bottom:12px}
+.cta-box p{color:rgba(255,255,255,.8);font-size:17px;margin-bottom:28px;max-width:500px;margin-left:auto;margin-right:auto}
+.cta-box .btn{background:#fff;color:#1e7852;font-weight:700;box-shadow:0 8px 30px rgba(0,0,0,.15)}
+.cta-box .btn:hover{background:#f0f9f4;transform:translateY(-2px)}
+
+.cta-soft{background:linear-gradient(135deg,#f0f9f4,#d9f0e3);border-radius:28px;padding:60px 40px;text-align:center}
+.cta-soft h2{font-family:'Playfair Display',Georgia,serif;font-size:clamp(26px,4vw,40px);font-weight:700;color:#111827;margin-bottom:12px}
+.cta-soft p{color:#4b5563;font-size:17px;margin-bottom:28px;max-width:500px;margin-left:auto;margin-right:auto}
+
+/* Footer */
+.footer{background:#111827;color:#d1d5db;padding:80px 0 0}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:48px}
+.footer-brand{margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.footer-logo-icon{width:40px;height:40px;background:linear-gradient(135deg,#2d9467,#52b083);border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Playfair Display',serif;font-weight:700;font-size:20px;flex-shrink:0}
+.footer-brand-text{font-family:'Playfair Display',serif;font-weight:700;font-size:18px;color:#fff}
+.footer-brand-sub{display:block;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#52b083}
+.footer-about{color:#9ca3af;font-size:14px;line-height:1.7;margin-bottom:20px;max-width:320px}
+.footer-social{display:flex;gap:10px}
+.footer-social a{width:38px;height:38px;border-radius:50%;background:#1f2937;display:flex;align-items:center;justify-content:center;color:#9ca3af;font-size:15px;transition:all .3s}
+.footer-social a:hover{background:#2d9467;color:#fff}
+.footer-col h4{font-weight:600;color:#fff;font-size:14px;margin-bottom:16px}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:10px}
+.footer-col ul a{color:#9ca3af;font-size:13px;transition:color .3s}
+.footer-col ul a:hover{color:#52b083}
+.footer-contact{border-top:1px solid #1f2937;padding:32px 0;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.footer-contact-item{display:flex;align-items:center;gap:12px}
+.footer-contact-icon{width:40px;height:40px;border-radius:10px;background:#1f2937;display:flex;align-items:center;justify-content:center;color:#52b083;font-size:16px;flex-shrink:0}
+.footer-contact-text{font-size:13px;color:#9ca3af}
+.footer-bottom{border-top:1px solid #1f2937;padding:24px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-copy{font-size:13px;color:#6b7280}
+.footer-badges{display:flex;gap:16px;font-size:12px;color:#6b7280;flex-wrap:wrap}
+.footer-badges span{display:flex;align-items:center;gap:5px}
+.footer-dot{width:6px;height:6px;border-radius:50%;background:#22c55e;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* Newsletter */
+.newsletter{display:flex;gap:10px;max-width:440px;margin:0 auto}
+.newsletter input{flex:1;padding:12px 20px;border:1px solid #d1d5db;border-radius:999px;font-size:14px;outline:none;font-family:'Inter',sans-serif}
+.newsletter input:focus{border-color:#2d9467;box-shadow:0 0 0 3px rgba(45,148,103,.1)}
+.newsletter .btn{padding:12px 28px;font-size:14px;white-space:nowrap}
+
+/* Page Hero (subpages) */
+.page-hero{position:relative;padding:140px 0 80px;background:linear-gradient(135deg,#111827,#1a2332,#123f2e);text-align:center;overflow:hidden}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(45,148,103,.1),transparent 60%)}
+.page-hero>*{position:relative}
+.page-hero .section-label{color:#84cca8}
+.page-hero h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(32px,5vw,56px);font-weight:700;color:#fff;margin:16px 0 20px}
+.page-hero p{color:#9ca3af;font-size:18px;max-width:640px;margin:0 auto;line-height:1.7}
+
+/* Image placeholder */
+.img-placeholder{border-radius:24px;background:linear-gradient(135deg,#f0f9f4,#d9f0e3,#fff);display:flex;align-items:center;justify-content:center;min-height:320px;font-size:60px}
+
+/* Pagination */
+.pagination{display:flex;justify-content:center;gap:8px;margin-top:48px}
+.pagination span{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;cursor:pointer;transition:all .3s;background:#f3f4f6;color:#6b7280}
+.pagination span.active{background:#2d9467;color:#fff}
+.pagination span:hover:not(.active){background:#f0f9f4;color:#2d9467}
+
+/* Process steps */
+.process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.process-card{position:relative;padding:32px 24px}
+.process-num{font-family:'Playfair Display',Georgia,serif;font-size:48px;font-weight:700;color:#d1fae5;position:absolute;top:16px;right:20px}
+.process-card .card-icon{margin-bottom:12px}
+.process-card .card-title{font-size:17px;font-family:'Inter',sans-serif;font-weight:600}
+
+/* Advantage cards */
+.adv-card{padding:24px;background:#fff;border-radius:16px;border:1px solid #f3f4f6;transition:all .3s}
+.adv-card:hover{border-color:#d1fae5;box-shadow:0 8px 25px rgba(0,0,0,.06)}
+.adv-num{width:32px;height:32px;border-radius:10px;background:#f0f9f4;display:flex;align-items:center;justify-content:center;color:#2d9467;font-size:12px;font-weight:700;margin-bottom:12px}
+.adv-title{font-weight:600;color:#111827;font-size:15px;margin-bottom:6px}
+.adv-desc{color:#6b7280;font-size:13px;line-height:1.6}
+
+/* Bg gray */
+.bg-gray{background:#f9fafb}
+
+/* Animations */
+.fade-up{opacity:0;transform:translateY(30px);transition:all .7s}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* Mobile */
+@media(max-width:1024px){
+  .grid-4{grid-template-columns:repeat(2,1fr)}
+  .blog-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .contact-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .nav-links{display:none;position:absolute;top:72px;left:16px;right:16px;background:#fff;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.15);flex-direction:column;padding:12px;gap:2px}
+  .nav-links.show{display:flex}
+  .nav-links a{color:#374151!important;padding:12px 16px!important;border-radius:12px!important}
+  .nav-links a:hover,.nav-links a.active{background:#f0f9f4!important;color:#2d9467!important}
+  .nav-cta{background:#2d9467!important;color:#fff!important;text-align:center}
+  .nav-toggle{display:block}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .stat-item:nth-child(2){border-right:none}
+  .grid-2,.grid-3,.process-grid{grid-template-columns:1fr}
+  .grid-4{grid-template-columns:1fr 1fr}
+  .blog-grid{grid-template-columns:1fr}
+  .blog-featured{grid-template-columns:1fr}
+  .blog-feat-img{min-height:200px}
+  .footer-grid{grid-template-columns:1fr}
+  .footer-contact{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .timeline::before{left:24px}
+  .timeline-item,.timeline-item:nth-child(even){flex-direction:row}
+  .timeline-content{text-align:left!important;padding:0 0 0 40px;flex:1}
+  .timeline-dot{position:absolute;left:24px;transform:translateX(-50%)}
+  .timeline-spacer{display:none!important}
+  .tab-content.active{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .section{padding:60px 0}
+}
+@media(max-width:480px){
+  .stats-grid{grid-template-columns:1fr}
+  .stat-item{border-right:none;border-bottom:1px solid #f3f4f6}
+  .stat-item:last-child{border-bottom:none}
+  .hero-btns{flex-direction:column}
+  .hero-btns .btn{justify-content:center}
+  .tabs{flex-direction:column;align-items:stretch}
+  .tab-btn{text-align:center}
+  .newsletter{flex-direction:column}
+}
+</style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fas fa-seedling"></i>
-                <span>Green Network</span>
-            </div>
-            <nav>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#initiatives">Initiatives</a></li>
-                    <li><a href="#get-involved">Get Involved</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" onclick="navigate('home')">
+      <div class="nav-logo-icon">Q</div>
+      <div>
+        <span class="nav-logo-text">Qianlan</span>
+        <span class="nav-logo-sub">Skincare</span>
+      </div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#" onclick="navigate('home')" class="active" data-page="home">Home</a></li>
+      <li><a href="#" onclick="navigate('about')" data-page="about">About Us</a></li>
+      <li><a href="#" onclick="navigate('products')" data-page="products">Products</a></li>
+      <li><a href="#" onclick="navigate('service')" data-page="service">Service</a></li>
+      <li><a href="#" onclick="navigate('faq')" data-page="faq">FAQ</a></li>
+      <li><a href="#" onclick="navigate('blog')" data-page="blog">Blog</a></li>
+      <li><a href="#" onclick="navigate('contact')" data-page="contact">Contact Us</a></li>
+      <li><a href="#" onclick="navigate('contact')" class="nav-cta">Get a Quote</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
+
+<!-- ==================== HOME PAGE ==================== -->
+<section class="page active" id="page-home">
+  <!-- Hero -->
+  <div class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <span class="hero-badge fade-up">Premium Private Label Skincare Manufacturer</span>
+        <h1 class="fade-up">Your Trusted <span>Skincare</span> Manufacturing Partner</h1>
+        <p class="fade-up">Qianlan provides comprehensive private label skincare solutions for cosmetic brands, offering a full range of skincare production services to help you launch your skincare brand to market.</p>
+        <div class="hero-btns fade-up">
+          <a href="#" class="btn btn-primary" onclick="navigate('contact')">Get Started →</a>
+          <a href="#" class="btn btn-white" onclick="navigate('products')">Explore Products</a>
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Protect Our Planet, Preserve Our Future</h1>
-            <p>Join the global movement to create a sustainable world through conservation, education, and community action.</p>
-            <a href="#get-involved" class="btn">Join Our Network</a>
+        <div class="hero-certs fade-up">
+          <span><span class="dot"></span> FDA Compliant</span>
+          <span><span class="dot"></span> ISO 22716 Certified</span>
+          <span><span class="dot"></span> Cruelty-Free</span>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Green Network</h2>
-                <p>We are a global community dedicated to environmental protection and sustainable development.</p>
-            </div>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team planting trees">
-                </div>
-                <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>Green Network is committed to creating a sustainable future by protecting natural ecosystems, promoting renewable energy, and empowering communities to take environmental action.</p>
-                    <p>Founded in 2010, we've grown from a small grassroots organization to an international network with over 50,000 members across 120 countries.</p>
-                    <p>Our approach combines scientific research, community engagement, and policy advocacy to address the most pressing environmental challenges of our time.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-            </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <i class="fas fa-tree"></i>
-                    <h3 class="counter" data-target="2500000">0</h3>
-                    <p>Trees Planted</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <h3 class="counter" data-target="50000">0</h3>
-                    <p>Active Members</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3 class="counter" data-target="120">0</h3>
-                    <p>Countries Reached</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-recycle"></i>
-                    <h3 class="counter" data-target="1500">0</h3>
-                    <p>Cleanup Projects</p>
-                </div>
-            </div>
+  <!-- Stats -->
+  <div class="stats-section">
+    <div class="container">
+      <div class="stats-grid fade-up">
+        <div class="stat-item"><div class="stat-icon">🤝</div><div class="stat-value">200+</div><div class="stat-label">Brand Partners</div></div>
+        <div class="stat-item"><div class="stat-icon">🧪</div><div class="stat-value">1,000+</div><div class="stat-label">Formulas Developed</div></div>
+        <div class="stat-item"><div class="stat-icon">⭐</div><div class="stat-value">15+</div><div class="stat-label">Years Experience</div></div>
+        <div class="stat-item"><div class="stat-icon">🚀</div><div class="stat-value">50+</div><div class="stat-label">Countries Served</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Preview -->
+  <div class="section">
+    <div class="container">
+      <div class="grid-2">
+        <div class="fade-up">
+          <div class="section-label">About Qianlan</div>
+          <h2 class="section-title">Bringing Your Skincare Vision to Life</h2>
+          <p style="color:#4b5563;line-height:1.7;margin-bottom:16px">Based in Guangzhou, China, Qianlan Skincare Manufacturer specializes in premium private label and OEM skincare production. With over 15 years of industry experience, we've helped hundreds of brands worldwide create exceptional skincare products.</p>
+          <p style="color:#4b5563;line-height:1.7;margin-bottom:28px">Our state-of-the-art facility is ISO 22716 GMP-certified, and all our products are formulated to meet FDA standards. We are proudly cruelty-free — no animal testing at any stage of production.</p>
+          <a href="#" class="btn btn-outline" onclick="navigate('about')">Learn More About Us →</a>
         </div>
-    </section>
-
-    <!-- Initiatives Section -->
-    <section class="initiatives" id="initiatives">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Initiatives</h2>
-                <p>Discover the key programs and projects we're implementing to protect our planet.</p>
+        <div class="fade-up">
+          <div class="img-placeholder">
+            <div style="text-align:center;padding:40px">
+              <div style="font-size:70px;margin-bottom:16px">🤝</div>
+              <h3 style="font-family:'Playfair Display',serif;font-size:22px;color:#1e7852;margin-bottom:8px">Your Success Is Our Mission</h3>
+              <p style="color:#6b7280;font-size:14px">We partner with you every step of the way — from concept to consumer.</p>
             </div>
-            <div class="initiatives-grid">
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://dialogue.earth/content/uploads/2021/04/lessons-from-the-rush-to-reforest-china-dialogue-2400x1599.jpg" alt="Reforestation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Global Reforestation</h3>
-                        <p>Planting millions of trees worldwide to restore ecosystems, combat climate change, and protect biodiversity.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Ocean Conservation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Ocean Conservation</h3>
-                        <p>Protecting marine ecosystems, reducing plastic pollution, and promoting sustainable fishing practices.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Renewable Energy">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Renewable Energy</h3>
-                        <p>Promoting solar, wind, and other clean energy sources to reduce dependence on fossil fuels.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
 
-    <!-- CTA Section -->
-    <section class="cta" id="get-involved">
-        <div class="container">
-            <h2>Join Our Global Movement</h2>
-            <p>Together, we can create a sustainable future for generations to come. Every action counts, no matter how small.</p>
-            <a href="#" class="btn">Become a Member</a>
+  <!-- Product Categories -->
+  <div class="section bg-gray">
+    <div class="container">
+      <div class="text-center mb-16 fade-up">
+        <div class="section-label">Our Products</div>
+        <h2 class="section-title">Premium Skincare Categories</h2>
+        <p class="section-subtitle">Comprehensive OEM/ODM solutions across all major skincare categories</p>
+      </div>
+      <div class="grid-4">
+        <div class="card cat-card fade-up"><span class="cat-emoji">🧴</span><h3 class="card-title">Cleansers</h3><p class="card-desc">Gentle and effective facial cleansers for all skin types</p></div>
+        <div class="card cat-card fade-up"><span class="cat-emoji">💧</span><h3 class="card-title">Toners</h3><p class="card-desc">Hydrating and balancing toners to prep your skin</p></div>
+        <div class="card cat-card fade-up"><span class="cat-emoji">✨</span><h3 class="card-title">Lotions</h3><p class="card-desc">Lightweight moisturizing lotions for daily care</p></div>
+        <div class="card cat-card fade-up"><span class="cat-emoji">🧪</span><h3 class="card-title">Creams</h3><p class="card-desc">Rich nourishing creams for intensive skincare</p></div>
+      </div>
+      <div class="text-center mt-10 fade-up">
+        <a href="#" class="btn btn-outline" onclick="navigate('products')">View All Products →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Certifications -->
+  <div class="section">
+    <div class="container">
+      <div class="text-center mb-16 fade-up">
+        <div class="section-label">Quality Standards</div>
+        <h2 class="section-title">Certifications & Compliance</h2>
+        <p class="section-subtitle">Your assurance of quality, safety, and ethical manufacturing</p>
+      </div>
+      <div class="grid-3">
+        <div class="card card-center fade-up"><div class="card-icon">🛡️</div><h3 class="card-title">FDA Compliant</h3><p class="card-desc">All products meet US FDA standards for safety and quality</p></div>
+        <div class="card card-center fade-up"><div class="card-icon">✅</div><h3 class="card-title">ISO 22716</h3><p class="card-desc">GMP-certified manufacturing facility in Guangzhou</p></div>
+        <div class="card card-center fade-up"><div class="card-icon">🌿</div><h3 class="card-title">Cruelty-Free</h3><p class="card-desc">No animal testing — ethically produced skincare products</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Why Choose Us -->
+  <div class="section bg-gray">
+    <div class="container">
+      <div class="text-center mb-16 fade-up">
+        <div class="section-label">Why Qianlan</div>
+        <h2 class="section-title">Why Choose Us</h2>
+        <p class="section-subtitle">We provide everything you need to launch and scale your skincare brand</p>
+      </div>
+      <div class="grid-3">
+        <div class="card fade-up"><div style="display:flex;gap:12px"><span style="color:#2d9467;font-size:20px;flex-shrink:0">✓</span><div><h4 style="font-weight:600;margin-bottom:4px">End-to-End Service</h4><p class="card-desc">From formula R&D to packaging design and final production, we handle everything.</p></div></div></div>
+        <div class="card fade-up"><div style="display:flex;gap:12px"><span style="color:#2d9467;font-size:20px;flex-shrink:0">✓</span><div><h4 style="font-weight:600;margin-bottom:4px">Low MOQ</h4><p class="card-desc">Flexible minimum order quantities to help startups and established brands alike.</p></div></div></div>
+        <div class="card fade-up"><div style="display:flex;gap:12px"><span style="color:#2d9467;font-size:20px;flex-shrink:0">✓</span><div><h4 style="font-weight:600;margin-bottom:4px">Fast Turnaround</h4><p class="card-desc">Streamlined production process ensures your products reach market quickly.</p></div></div></div>
+        <div class="card fade-up"><div style="display:flex;gap:12px"><span style="color:#2d9467;font-size:20px;flex-shrink:0">✓</span><div><h4 style="font-weight:600;margin-bottom:4px">Quality Assurance</h4><p class="card-desc">Rigorous quality control at every stage of manufacturing.</p></div></div></div>
+        <div class="card fade-up"><div style="display:flex;gap:12px"><span style="color:#2d9467;font-size:20px;flex-shrink:0">✓</span><div><h4 style="font-weight:600;margin-bottom:4px">Custom Formulation</h4><p class="card-desc">Tailor-made skincare products that match your brand vision and target market.</p></div></div></div>
+        <div class="card fade-up"><div style="display:flex;gap:12px"><span style="color:#2d9467;font-size:20px;flex-shrink:0">✓</span><div><h4 style="font-weight:600;margin-bottom:4px">Global Compliance</h4><p class="card-desc">Products meet regulatory requirements for markets worldwide.</p></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="section">
+    <div class="container">
+      <div class="cta-box fade-up">
+        <h2>Ready to Launch Your Skincare Brand?</h2>
+        <p>Let's discuss your project. Our team is ready to help you create exceptional skincare products.</p>
+        <a href="#" class="btn" onclick="navigate('contact')">Contact Us Today →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ABOUT PAGE ==================== -->
+<section class="page" id="page-about">
+  <div class="page-hero">
+    <div class="container">
+      <div class="section-label fade-up">About Us</div>
+      <h1 class="fade-up">Our Story & Mission</h1>
+      <p class="fade-up">Qianlan Skincare Manufacturer is a premier private label and OEM skincare producer based in Guangzhou, China. We empower cosmetic brands worldwide with high-quality, ethically manufactured skincare products.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="grid-2">
+        <div class="fade-up">
+          <div class="section-label">Who We Are</div>
+          <h2 class="section-title">Your Dedicated Skincare Manufacturing Partner</h2>
+          <p style="color:#4b5563;line-height:1.7;margin-bottom:16px">Qianlan Skincare Manufacturer was founded with a clear mission: to provide cosmetic brands with reliable, high-quality private label skincare solutions. Headquartered in Guangzhou — China's cosmetics manufacturing hub — our facility combines advanced production technology with decades of formulation expertise.</p>
+          <p style="color:#4b5563;line-height:1.7;margin-bottom:20px">We specialize in developing and manufacturing a comprehensive range of skincare products, including cleansers, toners, lotions, creams, serums, masks, and more. Whether you're a startup launching your first product line or an established brand expanding your portfolio, our team provides end-to-end support.</p>
+          <ul class="check-list">
+            <li><span class="check">✓</span> ISO 22716 GMP-certified manufacturing facility</li>
+            <li><span class="check">✓</span> All products formulated to meet FDA standards</li>
+            <li><span class="check">✓</span> Cruelty-free — no animal testing</li>
+            <li><span class="check">✓</span> Low MOQ with flexible production options</li>
+          </ul>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Green Network</h3>
-                    <p>We are dedicated to protecting our planet through collaborative action, education, and sustainable solutions.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#initiatives">Initiatives</a></li>
-                        <li><a href="#get-involved">Get Involved</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Our Programs</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Reforestation</a></li>
-                        <li><a href="#">Ocean Cleanup</a></li>
-                        <li><a href="#">Wildlife Protection</a></li>
-                        <li><a href="#">Climate Education</a></li>
-                        <li><a href="#">Sustainable Agriculture</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Copper Creek Drive, New York</p>
-                    <p><i class="fas fa-phone"></i> +1 (312) 171-0771</p>
-                    <p><i class="fas fa-envelope"></i> support@greennetwork.org</p>
-                </div>
+        <div class="fade-up">
+          <div class="img-placeholder">
+            <div style="text-align:center;padding:40px">
+              <div style="font-size:64px;margin-bottom:16px">🏭</div>
+              <h3 style="font-family:'Playfair Display',serif;font-size:22px;color:#1e7852;margin-bottom:8px">State-of-the-Art Facility</h3>
+              <p style="color:#6b7280;font-size:14px">Our modern manufacturing facility in Guangzhou is equipped with advanced production lines, temperature-controlled environments, and dedicated R&D laboratories.</p>
             </div>
-            <div class="copyright">
-                <p>&copy; 2025 Green Network. All rights reserved.</p>
-            </div>
+          </div>
         </div>
-    </footer>
+      </div>
+    </div>
+  </div>
 
-    <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
-        });
+  <!-- Values -->
+  <div class="section bg-gray">
+    <div class="container">
+      <div class="text-center mb-16 fade-up">
+        <div class="section-label">Our Values</div>
+        <h2 class="section-title">What We Stand For</h2>
+        <p class="section-subtitle">Core principles that guide everything we do at Qianlan</p>
+      </div>
+      <div class="grid-4">
+        <div class="card card-center fade-up"><div class="card-icon">🛡️</div><h3 class="card-title">Quality First</h3><p class="card-desc">Every product undergoes rigorous quality testing in our ISO 22716 GMP-certified facility.</p></div>
+        <div class="card card-center fade-up"><div class="card-icon">🌿</div><h3 class="card-title">Cruelty-Free</h3><p class="card-desc">No animal testing at any stage of production — committed to ethical manufacturing.</p></div>
+        <div class="card card-center fade-up"><div class="card-icon">🌍</div><h3 class="card-title">Global Standards</h3><p class="card-desc">Formulations meet FDA standards and international cosmetic regulations worldwide.</p></div>
+        <div class="card card-center fade-up"><div class="card-icon">🤝</div><h3 class="card-title">True Partnership</h3><p class="card-desc">We work closely with every client — treating your success as our own.</p></div>
+      </div>
+    </div>
+  </div>
 
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200; // The lower the slower
-            
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                
-                const inc = target / speed;
-                
-                if(count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(animateCounters, 1);
-                } else {
-                    counter.innerText = target;
-                }
-            });
-        }
+  <!-- Timeline -->
+  <div class="section">
+    <div class="container">
+      <div class="text-center mb-16 fade-up">
+        <div class="section-label">Our Journey</div>
+        <h2 class="section-title">Company Milestones</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item fade-up"><div class="timeline-content"><div class="timeline-year">2009</div><div class="timeline-title">Founded in Guangzhou</div><div class="timeline-desc">Established with a vision to provide premium skincare manufacturing services.</div></div><div class="timeline-dot"></div><div class="timeline-spacer"></div></div>
+        <div class="timeline-item fade-up"><div class="timeline-spacer"></div><div class="timeline-dot"></div><div class="timeline-content"><div class="timeline-year">2012</div><div class="timeline-title">ISO 22716 Certified</div><div class="timeline-desc">Achieved GMP certification, demonstrating our commitment to quality manufacturing.</div></div></div>
+        <div class="timeline-item fade-up"><div class="timeline-content"><div class="timeline-year">2015</div><div class="timeline-title">International Expansion</div><div class="timeline-desc">Began serving cosmetic brands across Asia, Europe, and North America.</div></div><div class="timeline-dot"></div><div class="timeline-spacer"></div></div>
+        <div class="timeline-item fade-up"><div class="timeline-spacer"></div><div class="timeline-dot"></div><div class="timeline-content"><div class="timeline-year">2018</div><div class="timeline-title">FDA Compliance</div><div class="timeline-desc">All formulations upgraded to meet United States FDA standards for safety and quality.</div></div></div>
+        <div class="timeline-item fade-up"><div class="timeline-content"><div class="timeline-year">2021</div><div class="timeline-title">R&D Center Launch</div><div class="timeline-desc">Opened advanced research laboratory for innovative skincare formula development.</div></div><div class="timeline-dot"></div><div class="timeline-spacer"></div></div>
+        <div class="timeline-item fade-up"><div class="timeline-spacer"></div><div class="timeline-dot"></div><div class="timeline-content"><div class="timeline-year">2024</div><div class="timeline-title">200+ Brand Partners</div><div class="timeline-desc">Milestone reached — over 200 cosmetic brands trust Qianlan for their skincare production.</div></div></div>
+      </div>
+    </div>
+  </div>
 
-        // Initialize counters when page loads
-        window.addEventListener('load', animateCounters);
+  <!-- Vision -->
+  <div class="section bg-gray">
+    <div class="container">
+      <div class="text-center fade-up" style="max-width:700px;margin:0 auto">
+        <div style="font-size:48px;margin-bottom:20px">👥</div>
+        <h2 class="section-title">Our Vision</h2>
+        <p style="color:#4b5563;font-size:17px;line-height:1.7">We envision a world where every cosmetic brand — regardless of size — has access to premium-quality, ethically manufactured skincare products. By combining cutting-edge formulation science with sustainable practices, we help our partners create products that consumers love and trust.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    document.querySelector('nav ul').classList.remove('active');
-                }
-            });
-        });
-    </script>
+<!-- ==================== PRODUCTS PAGE ==================== -->
+<section class="page" id="page-products">
+  <div class="page-hero">
+    <div class="container">
+      <div class="section-label fade-up">Products</div>
+      <h1 class="fade-up">Premium Skincare Products</h1>
+      <p class="fade-up">Comprehensive OEM/ODM solutions across all major skincare categories. From cleansers to creams, we manufacture it all.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="tabs fade-up" id="productTabs">
+        <button class="tab-btn active" onclick="switchProductTab(0)">🧴 Cleansers</button>
+        <button class="tab-btn" onclick="switchProductTab(1)">💧 Toners</button>
+        <button class="tab-btn" onclick="switchProductTab(2)">✨ Lotions</button>
+        <button class="tab-btn" onclick="switchProductTab(3)">🧪 Creams</button>
+        <button class="tab-btn" onclick="switchProductTab(4)">🔬 Serums</button>
+        <button class="tab-btn" onclick="switchProductTab(5)">🎭 Masks</button>
+      </div>
+
+      <div id="productTabContents">
+        <!-- Tab 0: Cleansers -->
+        <div class="tab-content active fade-up">
+          <div><span style="font-size:64px">🧴</span><h2 style="font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:#111827;margin:16px 0">Cleansers</h2><p style="color:#4b5563;line-height:1.7;font-size:16px">Gentle yet effective facial cleansers formulated for all skin types. From foaming cleansers to cleansing oils and micellar waters, we create products that remove impurities while maintaining skin's natural moisture barrier.</p></div>
+          <div>
+            <div class="feature-box"><h4>🧪 Product Types</h4><div class="grid-2"><div>✓ Foaming Cleanser</div><div>✓ Gel Cleanser</div><div>✓ Cream Cleanser</div><div>✓ Cleansing Oil</div><div>✓ Micellar Water</div><div>✓ Exfoliating Scrub</div></div></div>
+            <div class="feature-box"><h4>🌿 Key Features</h4><div class="grid-2"><div>✓ pH-balanced formulas</div><div>✓ Sulfate-free options</div><div>✓ Suitable for sensitive skin</div><div>✓ Natural surfactants available</div></div></div>
+          </div>
+        </div>
+        <!-- Tab 1: Toners -->
+        <div class="tab-content fade-up">
+          <div><span style="font-size:64px">💧</span><h2 style="font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:#111827;margin:16px 0">Toners</h2><p style="color:#4b5563;line-height:1.7;font-size:16px">Hydrating and balancing facial toners that prep the skin for subsequent skincare steps. Our toners are designed to restore skin's pH balance and deliver active ingredients effectively.</p></div>
+          <div>
+            <div class="feature-box"><h4>🧪 Product Types</h4><div class="grid-2"><div>✓ Hydrating Toner</div><div>✓ Exfoliating Toner</div><div>✓ Mist Toner</div><div>✓ Essence Toner</div><div>✓ AHA/BHA Toner</div><div>✓ Calming Toner</div></div></div>
+            <div class="feature-box"><h4>🌿 Key Features</h4><div class="grid-2"><div>✓ Alcohol-free formulas</div><div>✓ Enriched with botanicals</div><div>✓ Multiple active ingredients</div><div>✓ Fine mist spray packaging</div></div></div>
+          </div>
+        </div>
+        <!-- Tab 2: Lotions -->
+        <div class="tab-content fade-up">
+          <div><span style="font-size:64px">✨</span><h2 style="font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:#111827;margin:16px 0">Lotions</h2><p style="color:#4b5563;line-height:1.7;font-size:16px">Lightweight, fast-absorbing facial lotions that provide optimal hydration without heaviness. Perfect for daily moisturizing routines and layering in multi-step skincare regimens.</p></div>
+          <div>
+            <div class="feature-box"><h4>🧪 Product Types</h4><div class="grid-2"><div>✓ Daily Moisturizing Lotion</div><div>✓ Brightening Lotion</div><div>✓ Anti-aging Lotion</div><div>✓ Oil-control Lotion</div><div>✓ Soothing Lotion</div><div>✓ SPF Lotion</div></div></div>
+            <div class="feature-box"><h4>🌿 Key Features</h4><div class="grid-2"><div>✓ Non-comedogenic</div><div>✓ Fast absorption</div><div>✓ Lightweight texture</div><div>✓ Custom active ingredients</div></div></div>
+          </div>
+        </div>
+        <!-- Tab 3: Creams -->
+        <div class="tab-content fade-up">
+          <div><span style="font-size:64px">🧪</span><h2 style="font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:#111827;margin:16px 0">Creams</h2><p style="color:#4b5563;line-height:1.7;font-size:16px">Rich, nourishing facial creams for intensive skincare. From day creams to night treatments, eye creams to neck creams — we formulate products that deliver visible results.</p></div>
+          <div>
+            <div class="feature-box"><h4>🧪 Product Types</h4><div class="grid-2"><div>✓ Day Cream</div><div>✓ Night Cream</div><div>✓ Eye Cream</div><div>✓ Neck Cream</div><div>✓ Recovery Cream</div><div>✓ BB/CC Cream</div></div></div>
+            <div class="feature-box"><h4>🌿 Key Features</h4><div class="grid-2"><div>✓ Rich nourishing textures</div><div>✓ Anti-aging actives</div><div>✓ Long-lasting hydration</div><div>✓ Premium packaging options</div></div></div>
+          </div>
+        </div>
+        <!-- Tab 4: Serums -->
+        <div class="tab-content fade-up">
+          <div><span style="font-size:64px">🔬</span><h2 style="font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:#111827;margin:16px 0">Serums</h2><p style="color:#4b5563;line-height:1.7;font-size:16px">High-concentration treatment serums targeting specific skin concerns. Our R&D team develops advanced formulas with proven active ingredients for visible results.</p></div>
+          <div>
+            <div class="feature-box"><h4>🧪 Product Types</h4><div class="grid-2"><div>✓ Vitamin C Serum</div><div>✓ Hyaluronic Acid Serum</div><div>✓ Retinol Serum</div><div>✓ Peptide Serum</div><div>✓ Niacinamide Serum</div><div>✓ Antioxidant Serum</div></div></div>
+            <div class="feature-box"><h4>🌿 Key Features</h4><div class="grid-2"><div>✓ High active concentration</div><div>✓ Stable formulations</div><div>✓ Targeted treatment</div><div>✓ Clinical-grade ingredients</div></div></div>
+          </div>
+        </div>
+        <!-- Tab 5: Masks -->
+        <div class="tab-content fade-up">
+          <div><span style="font-size:64px">🎭</span><h2 style="font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:#111827;margin:16px 0">Masks</h2><p style="color:#4b5563;line-height:1.7;font-size:16px">Various mask formats for different skincare needs and consumer preferences. From sheet masks to wash-off masks, we offer complete mask production solutions.</p></div>
+          <div>
+            <div class="feature-box"><h4>🧪 Product Types</h4><div class="grid-2"><div>✓ Sheet Mask</div><div>✓ Clay Mask</div><div>✓ Sleeping Mask</div><div>✓ Peel-off Mask</div><div>✓ Hydrogel Mask</div><div>✓ Bubble Mask</div></div></div>
+            <div class="feature-box"><h4>🌿 Key Features</h4><div class="grid-2"><div>✓ Multiple mask materials</div><div>✓ Custom essence formulation</div><div>✓ Individual packaging</div><div>✓ Eye & lip patches available</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OEM Process -->
+  <div class="section bg-gray">
+    <div class="container">
+      <div class="text-center mb-16 fade-up">
+        <div class="section-label">How It Works</div>
+        <h2 class="section-title">Our OEM/ODM Process</h2>
+        <p class="section-subtitle">A streamlined process from concept to delivery</p>
+      </div>
+      <div class="process-grid">
+        <div class="card process-card fade-up"><span class="process-num">01</span><div class="card-icon">💬</div><h3 class="card-title">Consultation</h3><p class="card-desc">Share your brand vision, target market, and product requirements with our team.</p></div>
+        <div class="card process-card fade-up"><span class="process-num">02</span><div class="card-icon">🧪</div><h3 class="card-title">Formulation</h3><p class="card-desc">Our R&D team develops custom formulas tailored to your specifications.</p></div>
+        <div class="card process-card fade-up"><span class="process-num">03</span><div class="card-icon">📦</div><h3 class="card-title">Sampling</h3><p class="card-desc">Receive product samples for evaluation and feedback. Iterate until perfect.</p></div>
+        <div class="card process-card fade-up"><span class="process-num">04</span><div class="card-icon">🎨</div><h3 class="card-title">Packaging</h3><p class="card-desc">Design and produce packaging that reflects your brand identity.</p></div>
+        <div class="card process-card fade-up"><span class="process-num">05</span><div class="card-icon">🏭</div><h3 class="card-title">Production</h3><p class="card-desc">Full-scale manufacturing with strict quality control in our certified facility.</p></div>
+        <div class="card process-card fade-up"><span class="process-num">06</span><div class="card-icon">🚚</div><h3 class="card-title">Delivery</h3><p class="card-desc">Products are carefully packed and shipped to your destination worldwide.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="section">
+    <div class="container">
+      <div class="text-center fade-up">
+        <h2 class="section-title">Need a Custom Formula?</h2>
+        <p class="section-subtitle">Our R&D team can develop unique formulations tailored to your brand's specific needs.</p>
+        <div style="margin-top:28px"><a href="#" class="btn btn-primary" onclick="navigate('contact')">Request a Consultation →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SERVICE PAGE ==================== -->
+<section class="page" id="page-service">
+  <div class="page-hero">
+    <div class="container">
+      <div class="section-label fade-up">Our Service</div>
+      <h1 class="fade-up">Comprehensive Skincare Solutions</h1>
+      <p class="fade-up">End-to-end private label and OEM services to bring your skincare brand from concept to consumer. We handle everything so you can focus on growing your business.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="grid-3">
+        <div class="card fade-up"><div class="card-icon">🧪</div><h3 class="card-title">Formula R&D</h3><p class="card-desc">Our experienced team of cosmetic chemists develops custom formulations tailored to your brand requirements.</p><ul class="check-list"><li><span class="check">✓</span> Custom formula development</li><li><span class="check">✓</span> Existing formula optimization</li><li><span class="check">✓</span> Ingredient sourcing & evaluation</li><li><span class="check">✓</span> Stability & compatibility testing</li></ul></div>
+        <div class="card fade-up"><div class="card-icon">📦</div><h3 class="card-title">Private Label Manufacturing</h3><p class="card-desc">Full-scale OEM/ODM production with consistent quality. Choose from proven formulas or develop custom ones.</p><ul class="check-list"><li><span class="check">✓</span> Bulk production</li><li><span class="check">✓</span> Flexible batch sizes & low MOQ</li><li><span class="check">✓</span> ISO 22716 GMP-certified</li><li><span class="check">✓</span> FDA-compliant formulations</li></ul></div>
+        <div class="card fade-up"><div class="card-icon">🎨</div><h3 class="card-title">Packaging Design</h3><p class="card-desc">Complete packaging solutions that reflect your brand identity — beautiful, functional, and compliant.</p><ul class="check-list"><li><span class="check">✓</span> Custom packaging design</li><li><span class="check">✓</span> Primary & secondary packaging</li><li><span class="check">✓</span> Label & artwork design</li><li><span class="check">✓</span> Regulatory-compliant labeling</li></ul></div>
+        <div class="card fade-up"><div class="card-icon">✅</div><h3 class="card-title">Quality Assurance</h3><p class="card-desc">Comprehensive QC throughout production. Every batch tested to meet high standards and regulations.</p><ul class="check-list"><li><span class="check">✓</span> Raw material inspection</li><li><span class="check">✓</span> In-process QC checks</li><li><span class="check">✓</span> Finished product testing</li><li><span class="check">✓</span> Stability & shelf-life studies</li></ul></div>
+        <div class="card fade-up"><div class="card-icon">🚚</div><h3 class="card-title">Logistics & Shipping</h3><p class="card-desc">Hassle-free logistics to deliver your products anywhere in the world with full documentation.</p><ul class="check-list"><li><span class="check">✓</span> International shipping</li><li><span class="check">✓</span> Customs documentation</li><li><span class="check">✓</span> Warehousing & inventory</li><li><span class="check">✓</span> Door-to-door logistics</li></ul></div>
+        <div class="card fade-up"><div class="card-icon">🎧</div><h3 class="card-title">After-Sales Support</h3><p class="card-desc">Ongoing support after delivery. Our team is always available for any questions or concerns.</p><ul class="check-list"><li><span class="check">✓</span> Dedicated account manager</li><li><span class="check">✓</span> Technical support</li><li><span class="check">✓</span> Product improvement tips</li><li><span class="check">✓</span> Market trend insights</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Advantages -->
+  <div class="section bg-gray">
+    <div class="container">
+      <div class="text-center mb-16 fade-up">
+        <div class="section-label">Why Partner With Us</div>
+        <h2 class="section-title">The Qianlan Advantage</h2>
+        <p class="section-subtitle">What sets us apart as your skincare manufacturing partner</p>
+      </div>
+      <div class="grid-3">
+        <div class="adv-card fade-up"><div class="adv-num">01</div><div class="adv-title">One-Stop Solution</div><div class="adv-desc">Everything from formula to finished product under one roof — save time and reduce complexity.</div></div>
+        <div class="adv-card fade-up"><div class="adv-num">02</div><div class="adv-title">Cost-Effective</div><div class="adv-desc">Competitive pricing without compromising quality. Our scale translates to savings for you.</div></div>
+        <div class="adv-card fade-up"><div class="adv-num">03</div><div class="adv-title">Speed to Market</div><div class="adv-desc">Streamlined processes mean faster turnaround — get products to market ahead of competitors.</div></div>
+        <div class="adv-card fade-up"><div class="adv-num">04</div><div class="adv-title">Regulatory Expertise</div><div class="adv-desc">Deep knowledge of international cosmetic regulations for worldwide compliance.</div></div>
+        <div class="adv-card fade-up"><div class="adv-num">05</div><div class="adv-title">Flexible Partnership</div><div class="adv-desc">Whether small test batch or large-scale production, we adapt to your needs.</div></div>
+        <div class="adv-card fade-up"><div class="adv-num">06</div><div class="adv-title">Confidentiality Guaranteed</div><div class="adv-desc">Your formulas and brand information are protected by strict confidentiality agreements.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="cta-soft fade-up">
+        <h2>Let's Build Your Skincare Line Together</h2>
+        <p>Tell us about your project, and we'll create a tailored manufacturing plan for your brand.</p>
+        <a href="#" class="btn btn-primary" onclick="navigate('contact')">Start Your Project →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FAQ PAGE ==================== -->
+<section class="page" id="page-faq">
+  <div class="page-hero">
+    <div class="container">
+      <div class="section-label fade-up">FAQ</div>
+      <h1 class="fade-up">Frequently Asked Questions</h1>
+      <p class="fade-up">Find answers to common questions about our private label skincare manufacturing services. Can't find what you're looking for? Contact us directly.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container" style="max-width:800px">
+      <!-- Category 1 -->
+      <div class="faq-category fade-up">
+        <h3 class="faq-cat-title"><span class="faq-cat-num">01</span> General Questions</h3>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">What is private label skincare manufacturing?<span class="faq-arrow">▾</span></button><div class="faq-a"><p>Private label manufacturing allows you to sell skincare products under your own brand name. We produce the products according to your specifications, and you market and sell them as your own brand. This is a cost-effective way to launch a skincare line without investing in your own manufacturing facility.</p></div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">Where is Qianlan Skincare located?<span class="faq-arrow">▾</span></button><div class="faq-a"><p>Our manufacturing facility is located in Guangzhou, Guangdong Province, China — the heart of China's cosmetics manufacturing industry. This strategic location gives us access to top-quality raw materials and efficient logistics networks.</p></div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">Do you have a minimum order quantity (MOQ)?<span class="faq-arrow">▾</span></button><div class="faq-a"><p>Yes, but we offer flexible MOQs to accommodate both startups and established brands. MOQs vary by product type and formulation. Please contact our team for specific MOQ information for your project.</p></div></div>
+      </div>
+
+      <!-- Category 2 -->
+      <div class="faq-category fade-up">
+        <h3 class="faq-cat-title"><span class="faq-cat-num">02</span> Quality & Certifications</h3>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">Are your products FDA compliant?<span class="faq-arrow">▾</span></button><div class="faq-a"><p>Yes, all our formulations are developed to meet United States FDA standards for cosmetic products. We ensure our ingredients, manufacturing processes, and labeling comply with FDA regulations.</p></div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">Is your facility ISO 22716 certified?<span class="faq-arrow">▾</span></button><div class="faq-a"><p>Yes, our Guangzhou manufacturing facility is ISO 22716 GMP-certified. This international standard ensures Good Manufacturing Practices specific to cosmetic products, covering production, control, storage, and shipment.</p></div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">Are your products cruelty-free?<span class="faq-arrow">▾</span></button><div class="faq-a"><p>Absolutely. Qianlan Skincare is committed to ethical manufacturing. We do not conduct animal testing at any stage of our product development or production process. We are proud to offer cruelty-free skincare solutions.</p></div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">How do you ensure product quality?<span class="faq-arrow">▾</span></button><div class="faq-a"><p>We implement rigorous quality control at every stage — from raw material inspection to finished product testing. This includes microbiological testing, stability studies, compatibility testing, and preservative efficacy testing.</p></div></div>
+      </div>
+
+      <!-- Category 3 -->
+      <div class="faq-category fade-up">
+        <h3 class="faq-cat-title"><span class="faq-cat-num">03</span> Product Development</h3>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">Can you create custom formulas for my brand?<span class="faq-arrow">▾</span></button><div class="faq-a"><p>Yes! Our R&D team specializes in custom formulation development. We work closely with you to understand your brand vision, target market, and desired product characteristics to create unique, effective formulas.</p></div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">How long does product development take?<span class="faq-arrow">▾</span></button><div class="faq-a"><p>Development timelines vary depending on formula complexity. Generally, custom formulation takes 4-8 weeks, while using our existing formula library can be faster. Sampling, testing, and iteration time is additional.</p></div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">Do you provide samples before production?<span class="faq-arrow">▾</span></button><div class="faq-a"><p>Yes, we provide product samples for your evaluation and approval before proceeding with full-scale production. This ensures the product meets your expectations in texture, scent, efficacy, and overall quality.</p></div></div>
+      </div>
+
+      <!-- Category 4 -->
+      <div class="faq-category fade-up">
+        <h3 class="faq-cat-title"><span class="faq-cat-num">04</span> Packaging & Logistics</h3>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">Do you offer packaging design services?<span class="faq-arrow">▾</span></button><div class="faq-a"><p>Yes, we offer comprehensive packaging solutions including primary packaging (bottles, jars, tubes), secondary packaging (boxes), and label/artwork design. We can also work with your existing packaging designs.</p></div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">Do you ship internationally?<span class="faq-arrow">▾</span></button><div class="faq-a"><p>Yes, we ship to clients worldwide. Our logistics team handles all aspects of international shipping, including documentation, customs clearance, and coordination with freight forwarders.</p></div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">What are your payment terms?<span class="faq-arrow">▾</span></button><div class="faq-a"><p>We offer flexible payment terms. Typically, we require a deposit to begin production with the balance due before shipment. Specific terms can be discussed during project consultation.</p></div></div>
+      </div>
+
+      <!-- Category 5 -->
+      <div class="faq-category fade-up">
+        <h3 class="faq-cat-title"><span class="faq-cat-num">05</span> Partnership</h3>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">How do I get started?<span class="faq-arrow">▾</span></button><div class="faq-a"><p>Simply contact us through our website or email. Our team will schedule a consultation to discuss your brand vision, product requirements, target market, and budget. From there, we'll create a customized proposal for your project.</p></div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">Do you protect my formula confidentiality?<span class="faq-arrow">▾</span></button><div class="faq-a"><p>Yes, confidentiality is a top priority. All client formulas, brand information, and business details are protected by strict non-disclosure agreements. Your proprietary information remains exclusively yours.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-sm bg-gray">
+    <div class="container">
+      <div class="text-center fade-up">
+        <h2 class="section-title">Still Have Questions?</h2>
+        <p class="section-subtitle">Our team is ready to answer any additional questions you may have.</p>
+        <div style="margin-top:28px"><a href="#" class="btn btn-primary" onclick="navigate('contact')">Contact Us →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== BLOG PAGE ==================== -->
+<section class="page" id="page-blog">
+  <div class="page-hero">
+    <div class="container">
+      <div class="section-label fade-up">Blog</div>
+      <h1 class="fade-up">Insights & Resources</h1>
+      <p class="fade-up">Expert insights on skincare manufacturing, brand building, industry trends, and everything you need to succeed in the cosmetics market.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <!-- Featured Post -->
+      <div class="blog-featured fade-up">
+        <div class="blog-feat-img">🧪</div>
+        <div class="blog-feat-body">
+          <span class="blog-feat-badge">Featured</span>
+          <h2 class="blog-feat-title">How to Launch Your Own Skincare Brand: A Complete Guide</h2>
+          <p class="blog-feat-desc">Everything you need to know about starting a skincare brand — from concept development to finding the right manufacturer and launching to market.</p>
+          <div class="blog-feat-meta"><span>📅 June 15, 2026</span><span>👤 Qianlan Team</span><span>🏷️ Brand Building</span></div>
+          <a href="#" class="blog-card-link" onclick="navigate('blog')">Read Article →</a>
+        </div>
+      </div>
+
+      <!-- Blog Grid -->
+      <div class="blog-grid">
+        <div class="blog-card fade-up"><div class="blog-card-img">📋</div><div class="blog-card-body"><span class="blog-card-tag">Manufacturing</span><h3 class="blog-card-title">Understanding Private Label vs. White Label Skincare</h3><p class="blog-card-desc">Learn the key differences between private label and white label skincare manufacturing.</p><div class="blog-card-meta"><span>📅 Jun 10, 2026</span><a href="#" class="blog-card-link" onclick="navigate('blog')">Read →</a></div></div></div>
+        <div class="blog-card fade-up"><div class="blog-card-img">🛡️</div><div class="blog-card-body"><span class="blog-card-tag">Regulations</span><h3 class="blog-card-title">FDA Compliance for Cosmetic Products: What You Need to Know</h3><p class="blog-card-desc">A comprehensive overview of FDA requirements for cosmetic products.</p><div class="blog-card-meta"><span>📅 Jun 5, 2026</span><a href="#" class="blog-card-link" onclick="navigate('blog')">Read →</a></div></div></div>
+        <div class="blog-card fade-up"><div class="blog-card-img">📈</div><div class="blog-card-body"><span class="blog-card-tag">Industry Trends</span><h3 class="blog-card-title">Top Skincare Trends for 2026</h3><p class="blog-card-desc">Stay ahead of the curve with the latest skincare trends and innovations.</p><div class="blog-card-meta"><span>📅 May 28, 2026</span><a href="#" class="blog-card-link" onclick="navigate('blog')">Read →</a></div></div></div>
+        <div class="blog-card fade-up"><div class="blog-card-img">✅</div><div class="blog-card-body"><span class="blog-card-tag">Quality</span><h3 class="blog-card-title">The Importance of ISO 22716 Certification</h3><p class="blog-card-desc">Why GMP certification matters for cosmetic products and manufacturing.</p><div class="blog-card-meta"><span>📅 May 20, 2026</span><a href="#" class="blog-card-link" onclick="navigate('blog')">Read →</a></div></div></div>
+        <div class="blog-card fade-up"><div class="blog-card-img">🐰</div><div class="blog-card-body"><span class="blog-card-tag">Ethics</span><h3 class="blog-card-title">Cruelty-Free Skincare: A Guide for Brand Owners</h3><p class="blog-card-desc">What cruelty-free really means and how to ensure ethical manufacturing.</p><div class="blog-card-meta"><span>📅 May 12, 2026</span><a href="#" class="blog-card-link" onclick="navigate('blog')">Read →</a></div></div></div>
+        <div class="blog-card fade-up"><div class="blog-card-img">🔍</div><div class="blog-card-body"><span class="blog-card-tag">Brand Building</span><h3 class="blog-card-title">Choosing the Right Skincare Manufacturer: 10 Key Factors</h3><p class="blog-card-desc">Essential criteria when selecting a private label skincare manufacturer.</p><div class="blog-card-meta"><span>📅 May 5, 2026</span><a href="#" class="blog-card-link" onclick="navigate('blog')">Read →</a></div></div></div>
+      </div>
+
+      <div class="pagination fade-up">
+        <span class="active">1</span><span>2</span><span>3</span><span>→</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Newsletter -->
+  <div class="section bg-gray">
+    <div class="container">
+      <div class="text-center fade-up">
+        <h2 class="section-title">Stay Updated</h2>
+        <p class="section-subtitle">Subscribe to our newsletter for the latest skincare industry insights and manufacturing tips.</p>
+        <div class="newsletter mt-8">
+          <input type="email" placeholder="Enter your email">
+          <button class="btn btn-primary">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CONTACT PAGE ==================== -->
+<section class="page" id="page-contact">
+  <div class="page-hero">
+    <div class="container">
+      <div class="section-label fade-up">Contact Us</div>
+      <h1 class="fade-up">Let's Start a Conversation</h1>
+      <p class="fade-up">Ready to bring your skincare brand to life? Get in touch with our team to discuss your project requirements and discover how Qianlan can help.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="contact-grid">
+        <!-- Info -->
+        <div class="fade-up">
+          <h2 style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:#111827;margin-bottom:8px">Get in Touch</h2>
+          <p style="color:#6b7280;margin-bottom:32px;font-size:14px">We'd love to hear about your skincare project. Reach out through any of the channels below.</p>
+          <div class="contact-info-card"><div class="contact-info-icon">📍</div><div class="contact-info-text"><h4>Visit Us</h4><p>Guangzhou, Guangdong Province</p><small>China — Our headquarters</small></div></div>
+          <div class="contact-info-card"><div class="contact-info-icon">📞</div><div class="contact-info-text"><h4>Call Us</h4><p>+86 20 XXXX XXXX</p><small>Mon-Fri, 9:00 AM - 6:00 PM (CST)</small></div></div>
+          <div class="contact-info-card"><div class="contact-info-icon">✉️</div><div class="contact-info-text"><h4>Email Us</h4><p>info@qianlanskincare.com</p><small>We respond within 24 hours</small></div></div>
+          <div class="contact-info-card"><div class="contact-info-icon">🕐</div><div class="contact-info-text"><h4>Business Hours</h4><p>Mon-Fri: 9:00 AM - 6:00 PM</p><p>Sat: 9:00 AM - 12:00 PM</p><small>China Standard Time (UTC+8)</small></div></div>
+        </div>
+
+        <!-- Form -->
+        <div class="fade-up">
+          <div class="form-box" id="contactFormBox">
+            <h3 class="form-title">Send Us a Message</h3>
+            <p class="form-desc">Fill out the form below and our team will get back to you within 24 hours.</p>
+            <form id="contactForm" onsubmit="submitContactForm(event)">
+              <div class="form-row">
+                <div class="form-group"><label>Full Name <span class="req">*</span></label><input type="text" name="name" placeholder="Your full name" required></div>
+                <div class="form-group"><label>Email Address <span class="req">*</span></label><input type="email" name="email" placeholder="your@email.com" required></div>
+              </div>
+              <div class="form-row">
+                <div class="form-group"><label>Company Name</label><input type="text" name="company" placeholder="Your company name"></div>
+                <div class="form-group"><label>Phone Number</label><input type="tel" name="phone" placeholder="+1 (555) 000-0000"></div>
+              </div>
+              <div class="form-group" style="margin-bottom:16px"><label>Product Interest</label><select name="interest"><option value="">Select a product category</option><option>Cleansers</option><option>Toners</option><option>Lotions</option><option>Creams</option><option>Serums</option><option>Masks</option><option>Multiple Categories</option><option>Other / Not Sure</option></select></div>
+              <div class="form-group" style="margin-bottom:20px"><label>Your Message <span class="req">*</span></label><textarea name="message" placeholder="Tell us about your project, including product types, estimated order quantity, target market, and any specific requirements..." required></textarea></div>
+              <button type="submit" class="btn btn-primary">✉️ Send Message</button>
+            </form>
+            <div class="form-success" id="formSuccess">
+              <div class="form-success-icon">✅</div>
+              <h3 style="font-family:'Playfair Display',serif;font-size:22px;color:#166534;margin-bottom:8px">Message Sent Successfully!</h3>
+              <p style="color:#15803d;font-size:14px">Thank you for reaching out. Our team will contact you within 24 hours.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Map -->
+  <div class="section-sm bg-gray">
+    <div class="container">
+      <div class="text-center mb-12 fade-up">
+        <h2 class="section-title">Our Location</h2>
+        <p style="color:#6b7280;margin-top:8px">Guangzhou, Guangdong Province, China</p>
+      </div>
+      <div class="fade-up" style="border-radius:24px;overflow:hidden;background:linear-gradient(135deg,#f0f9f4,#fff,#d9f0e3);min-height:280px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.04)">
+        <div style="text-align:center;padding:40px">
+          <div style="font-size:48px;margin-bottom:16px">📍</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:22px;color:#1e7852;margin-bottom:8px">Qianlan Skincare Manufacturer</h3>
+          <p style="color:#6b7280">Guangzhou, Guangdong, China</p>
+          <p style="color:#9ca3af;font-size:13px;margin-top:8px">Strategically located in China's cosmetics manufacturing hub</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <div class="footer-logo-icon">Q</div>
+          <div><span class="footer-brand-text">Qianlan</span><span class="footer-brand-sub">Skincare</span></div>
+        </div>
+        <p class="footer-about">Your trusted partner for premium private label skincare manufacturing. FDA compliant, ISO 22716 certified, and cruelty-free.</p>
+        <div class="footer-social">
+          <a href="#" title="LinkedIn">in</a>
+          <a href="#" title="Instagram">ig</a>
+          <a href="#" title="Facebook">fb</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#" onclick="navigate('about')">About Us</a></li>
+          <li><a href="#" onclick="navigate('service')">Our Service</a></li>
+          <li><a href="#" onclick="navigate('blog')">Blog</a></li>
+          <li><a href="#" onclick="navigate('contact')">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <ul>
+          <li><a href="#" onclick="navigate('products')">Cleansers</a></li>
+          <li><a href="#" onclick="navigate('products')">Toners</a></li>
+          <li><a href="#" onclick="navigate('products')">Lotions</a></li>
+          <li><a href="#" onclick="navigate('products')">Creams</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#" onclick="navigate('faq')">FAQ</a></li>
+          <li><a href="#" onclick="navigate('faq')">Privacy Policy</a></li>
+          <li><a href="#" onclick="navigate('faq')">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-contact">
+      <div class="footer-contact-item"><div class="footer-contact-icon">📍</div><span class="footer-contact-text">Guangzhou, Guangdong, China</span></div>
+      <div class="footer-contact-item"><div class="footer-contact-icon">📞</div><span class="footer-contact-text">+86 20 XXXX XXXX</span></div>
+      <div class="footer-contact-item"><div class="footer-contact-icon">✉️</div><span class="footer-contact-text">info@qianlanskincare.com</span></div>
+    </div>
+
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 Qianlan Skincare Manufacturer. All rights reserved.</span>
+      <div class="footer-badges">
+        <span><span class="footer-dot"></span> FDA Compliant</span>
+        <span>ISO 22716 Certified</span>
+        <span>Cruelty-Free</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Page Navigation
+function navigate(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-' + page);
+  if (target) target.classList.add('active');
+
+  document.querySelectorAll('.nav-links a[data-page]').forEach(a => a.classList.remove('active'));
+  const navLink = document.querySelector('.nav-links a[data-page="' + page + '"]');
+  if (navLink) navLink.classList.add('active');
+
+  document.getElementById('navLinks').classList.remove('show');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Trigger animations on new page
+  setTimeout(triggerAnimations, 100);
+}
+
+// Mobile Menu Toggle
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('show');
+}
+
+// Navbar scroll effect
+window.addEventListener('scroll', () => {
+  const navbar = document.getElementById('navbar');
+  if (window.scrollY > 30) navbar.classList.add('scrolled');
+  else navbar.classList.remove('scrolled');
+});
+
+// FAQ Toggle
+function toggleFAQ(btn) {
+  const item = btn.parentElement;
+  item.classList.toggle('open');
+}
+
+// Product Tab Switch
+function switchProductTab(index) {
+  document.querySelectorAll('#productTabs .tab-btn').forEach((btn, i) => {
+    btn.classList.toggle('active', i === index);
+  });
+  document.querySelectorAll('#productTabContents .tab-content').forEach((content, i) => {
+    content.classList.toggle('active', i === index);
+  });
+  setTimeout(triggerAnimations, 100);
+}
+
+// Contact Form Submit
+function submitContactForm(e) {
+  e.preventDefault();
+  document.getElementById('contactForm').style.display = 'none';
+  document.getElementById('formSuccess').classList.add('show');
+  setTimeout(() => {
+    document.getElementById('contactForm').style.display = 'block';
+    document.getElementById('formSuccess').classList.remove('show');
+    document.getElementById('contactForm').reset();
+  }, 5000);
+}
+
+// Scroll Animations
+function triggerAnimations() {
+  const elements = document.querySelectorAll('.page.active .fade-up');
+  elements.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    if (rect.top < windowHeight - 50) {
+      el.classList.add('visible');
+    }
+  });
+}
+
+// Intersection Observer for animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+// Observe all fade-up elements on load
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  // Initial animation trigger
+  setTimeout(triggerAnimations, 300);
+});
+
+// Close mobile menu on outside click
+document.addEventListener('click', (e) => {
+  const nav = document.getElementById('navLinks');
+  const toggle = document.getElementById('navToggle');
+  if (nav.classList.contains('show') && !nav.contains(e.target) && e.target !== toggle) {
+    nav.classList.remove('show');
+  }
+});
+</script>
+
 </body>
-
 </html>
